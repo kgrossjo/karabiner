@@ -9,9 +9,9 @@
             "complex_modifications": {
                 "parameters": {
                     "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 500,
-                    "basic.to_if_alone_timeout_milliseconds": 1000,
-                    "basic.to_if_held_down_threshold_milliseconds": 750,
+                    "basic.to_delayed_action_delay_milliseconds": 0,
+                    "basic.to_if_alone_timeout_milliseconds": 150,
+                    "basic.to_if_held_down_threshold_milliseconds": 350,
                     "mouse_motion_to_scroll.speed": 100
                 },
                 "rules": [
@@ -27,25 +27,48 @@
                                         ]
                                     }
                                 },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "spacefn_mode",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
                                 "to_after_key_up": [
                                     {
                                         "set_variable": {
                                             "name": "spacefn_mode",
                                             "value": 0
                                         }
+                                    },
+                                    {
+                                        "key_code": "vk_none"
                                     }
                                 ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "spacefn_mode",
+                                                "value": 0
+                                            }
+                                        },
+                                        {
+                                            "key_code": "spacebar"
+                                        }
+                                    ]
+                                },
                                 "to_if_alone": [
                                     {
+                                        "set_variable": {
+                                            "name": "spacefn_mode",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
                                         "key_code": "spacebar"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "set_variable": {
+                                            "name": "spacefn_mode",
+                                            "value": 1
+                                        }
                                     }
                                 ],
                                 "type": "basic"
@@ -655,7 +678,7 @@
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
             },
-            "selected": false,
+            "selected": true,
             "simple_modifications": [],
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
@@ -1118,6 +1141,38 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "caps_ctrl",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_ctrl",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "1",
                                     "modifiers": {
                                         "optional": [
@@ -1133,7 +1188,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "1", "modifiers": [ "control" ]
+                                        "key_code": "1",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1162,7 +1220,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "2", "modifiers": [ "control" ]
+                                        "key_code": "2",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1191,7 +1252,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "3", "modifiers": [ "control" ]
+                                        "key_code": "3",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1220,7 +1284,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "4", "modifiers": [ "control" ]
+                                        "key_code": "4",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1249,7 +1316,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "5", "modifiers": [ "control" ]
+                                        "key_code": "5",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1278,7 +1348,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "6", "modifiers": [ "control" ]
+                                        "key_code": "6",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1307,7 +1380,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "7", "modifiers": [ "control" ]
+                                        "key_code": "7",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1336,7 +1412,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "8", "modifiers": [ "control" ]
+                                        "key_code": "8",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1365,7 +1444,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "9", "modifiers": [ "control" ]
+                                        "key_code": "9",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1394,7 +1476,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "0", "modifiers": [ "control" ]
+                                        "key_code": "0",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1423,7 +1508,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "a", "modifiers": [ "control" ]
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1452,7 +1540,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "b", "modifiers": [ "control" ]
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1481,7 +1572,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "c", "modifiers": [ "control" ]
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1510,7 +1604,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "d", "modifiers": [ "control" ]
+                                        "key_code": "d",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1539,7 +1636,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "e", "modifiers": [ "control" ]
+                                        "key_code": "e",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1568,7 +1668,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "f", "modifiers": [ "control" ]
+                                        "key_code": "f",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1597,7 +1700,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "g", "modifiers": [ "control" ]
+                                        "key_code": "g",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1626,7 +1732,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "h", "modifiers": [ "control" ]
+                                        "key_code": "h",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1655,7 +1764,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "i", "modifiers": [ "control" ]
+                                        "key_code": "i",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1684,7 +1796,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "j", "modifiers": [ "control" ]
+                                        "key_code": "j",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1713,7 +1828,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "k", "modifiers": [ "control" ]
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1742,7 +1860,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "l", "modifiers": [ "control" ]
+                                        "key_code": "l",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1771,7 +1892,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "m", "modifiers": [ "control" ]
+                                        "key_code": "m",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1800,7 +1924,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "n", "modifiers": [ "control" ]
+                                        "key_code": "n",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1829,7 +1956,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "o", "modifiers": [ "control" ]
+                                        "key_code": "o",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1858,7 +1988,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "p", "modifiers": [ "control" ]
+                                        "key_code": "p",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1887,7 +2020,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "q", "modifiers": [ "control" ]
+                                        "key_code": "q",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1916,7 +2052,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "r", "modifiers": [ "control" ]
+                                        "key_code": "r",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1945,7 +2084,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "s", "modifiers": [ "control" ]
+                                        "key_code": "s",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1974,7 +2116,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "t", "modifiers": [ "control" ]
+                                        "key_code": "t",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2003,7 +2148,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "u", "modifiers": [ "control" ]
+                                        "key_code": "u",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2032,7 +2180,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "v", "modifiers": [ "control" ]
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2061,7 +2212,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "w", "modifiers": [ "control" ]
+                                        "key_code": "w",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2090,7 +2244,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "x", "modifiers": [ "control" ]
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2119,7 +2276,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "y", "modifiers": [ "control" ]
+                                        "key_code": "y",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2148,7 +2308,10 @@
                                         }
                                     },
                                     {
-                                        "key_code": "z", "modifiers": [ "control" ]
+                                        "key_code": "z",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2172,6 +2335,32 @@
                                 "to": [
                                     {
                                         "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2447,6 +2636,32 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "page_down",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "u",
                                     "modifiers": {
                                         "optional": [
@@ -2506,6 +2721,182 @@
                                 "to": [
                                     {
                                         "key_code": "return_or_enter"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "space",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "space",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": [
+                                            "left_alt"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_forward",
+                                        "modifiers": [
+                                            "left_alt"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "left_alt"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "left_alt"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "home"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_down",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "close_bracket",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "end"
                                     }
                                 ],
                                 "type": "basic"
@@ -2813,7 +3204,7 @@
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
             },
-            "selected": true,
+            "selected": false,
             "simple_modifications": [],
             "virtual_hid_keyboard": {
                 "country_code": 0,
